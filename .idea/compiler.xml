@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
       <module name="database" target="1.7" />
+      <module name="GitSearch.app" target="1.8" />
+      <module name="GitSearch.buildSrc" target="1.8" />
+      <module name="GitSearch.database" target="1.8" />
+      <module name="GitSearch.networking" target="1.8" />
       <module name="networking" target="1.7" />
       <module name="shareddtos" target="1.7" />
     </bytecodeTargetLevel>
