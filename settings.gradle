@@ -1,2 +1,5 @@
+include ':shareddtos'
+include ':networking'
+include ':database'
 include ':app'
 rootProject.name = "GitSearch"
