@@ -4,11 +4,14 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.example.database.GitDatabase
+import com.example.networking.GitApi
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import javax.inject.Singleton
 
 
 @Module
@@ -20,6 +23,18 @@ object AppModule {
         @Binds
         fun context(app: Application): Context
     }
+
+    @Provides
+    @Singleton
+    fun provideDatabase(context: Context)=
+        GitDatabase.getInstance(context)
+
+    @Provides
+    @Singleton
+    fun provideGitApi() =
+        GitApi.create()
+
+
 
 
 
