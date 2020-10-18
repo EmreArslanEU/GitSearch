@@ -14,7 +14,7 @@ const val IN_QUALIFIER = "in:name,description"
 /**
  * Github API communication setup via Retrofit.
  */
-interface GithubService {
+interface GitApi {
     /**
      * Get repos ordered by stars.
      */
@@ -28,7 +28,7 @@ interface GithubService {
     companion object {
         private const val BASE_URL = "https://api.github.com/"
 
-        fun create(): GithubService {
+        fun create(): GitApi {
             val logger = HttpLoggingInterceptor()
             logger.level = Level.BASIC
 
@@ -40,7 +40,7 @@ interface GithubService {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(GithubService::class.java)
+                .create(GitApi::class.java)
         }
     }
 }
