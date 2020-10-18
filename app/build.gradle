@@ -56,4 +56,12 @@ dependencies {
 
     implementation(Libs.navigation_fragment_ktx)
     implementation(Libs.navigation_ui_ktx)
+    implementation(Libs.paging_runtime)
+    implementation(Libs.room_runtime)
+    implementation(Libs.retrofit)
+    implementation(Libs.kotlinx_coroutines_core)
+
+    implementation project(path: ':database')
+    implementation project(path: ':networking')
+    implementation project(path: ':shareddtos')
 }

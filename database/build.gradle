@@ -30,6 +30,7 @@ dependencies {
     implementation (Libs.room_runtime)
     implementation (Libs.room_ktx)
     implementation project(path: ':shareddtos')
+    implementation(Libs.paging_runtime)
 
 }
 
