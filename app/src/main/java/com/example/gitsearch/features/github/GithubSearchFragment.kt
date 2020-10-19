@@ -61,9 +61,12 @@ class GithubSearchFragment : Fragment() {
                 //binding.progressBarRepoList.startAnimation(binding.progressBarRepoList.animation)
             }
             else{
-                binding.progressBarRepoList.hide()
 
 
+                if(loadState.append is LoadState.Loading){
+                    binding.progressBarRepoList.show()
+                }
+                else binding.progressBarRepoList.hide()
                 // getting the error
                 val error = when {
                     loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
@@ -78,6 +81,7 @@ class GithubSearchFragment : Fragment() {
         }
 
         binding.reposwiperefresh.setOnRefreshListener {
+            if(binding.reposwiperefresh.isRefreshing)
             adapter.refresh()
             binding.reposwiperefresh.isRefreshing=false
         }
