@@ -13,7 +13,7 @@ object Versions {
 
     const val paging_version: String = "3.0.0-alpha07"
 
-    const val room_version: String = "2.2.5"
+    const val room_version: String = "2.3.0-alpha03"
 
     const val org_jetbrains_kotlinx_kotlinx_coroutines: String = "1.3.7"
 
@@ -73,7 +73,7 @@ object Versions {
 
     const val core_ktx: String = "1.3.0"
 
-    const val material: String = "1.2.0-alpha01"
+    const val material: String = "1.3.0-alpha03"
 
     const val browser: String = "1.2.0"
 
