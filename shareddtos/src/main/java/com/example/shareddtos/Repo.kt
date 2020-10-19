@@ -19,6 +19,8 @@ package com.example.shareddtos
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.time.LocalDateTime
+import java.time.ZonedDateTime
 
 /**
  * Immutable model class for a Github repo that holds all the information about a repository.
@@ -35,5 +37,6 @@ data class Repo(
     @field:SerializedName("html_url") val url: String,
     @field:SerializedName("stargazers_count") val stars: Int,
     @field:SerializedName("forks_count") val forks: Int,
-    @field:SerializedName("language") val language: String?
+    @field:SerializedName("language") val language: String?,
+    @field:SerializedName("updated_at") val lastUpdate: String?
 )

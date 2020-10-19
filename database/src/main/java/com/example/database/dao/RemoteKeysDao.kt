@@ -23,7 +23,7 @@ import androidx.room.Query
 import com.example.database.model.RemoteKeys
 
 @Dao
-interface RemoteKeysDao: BaseDao<RemoteKeys> {
+interface RemoteKeysDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(remoteKey: List<RemoteKeys>)

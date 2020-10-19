@@ -20,11 +20,14 @@ import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.room.withTransaction
 import com.example.database.GitDatabase
 import com.example.networking.GitApi
 import com.example.shareddtos.Repo
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import kotlin.coroutines.coroutineContext
 
 /**
  * Repository class that works with local and remote data sources.
@@ -45,8 +48,10 @@ class GithubRepository @Inject constructor(
         val dbQuery = "%${query.replace(' ', '%')}%"
         val pagingSourceFactory = { database.reposDao().reposByName(dbQuery) }
 
+        GithubRemoteMediator.init = 0
+
         return Pager(
-                config = PagingConfig(pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false),
+                config = PagingConfig(prefetchDistance = NETWORK_PAGE_SIZE/2 ,initialLoadSize = NETWORK_PAGE_SIZE*2, pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false),
                 remoteMediator = GithubRemoteMediator(
                         query,
                         service,
