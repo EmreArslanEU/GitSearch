@@ -23,7 +23,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.example.gitsearch.R
+import com.example.gitsearch.features.github.GithubSearchFragmentDirections
 import com.example.shareddtos.Repo
 import java.time.LocalDateTime
 
@@ -44,9 +46,14 @@ class RepoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     init {
         view.setOnClickListener {
-            repo?.url?.let { url ->
+            /*repo?.url?.let { url ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 view.context.startActivity(intent)
+            }*/
+
+            repo?.id?.let { id ->
+                val dir = GithubSearchFragmentDirections.actionGithubSearchFragmentToRepositoryDetailFragment(id)
+                it.findNavController().navigate(dir)
             }
         }
     }
