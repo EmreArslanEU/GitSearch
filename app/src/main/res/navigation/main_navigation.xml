@@ -9,10 +9,19 @@
         android:id="@+id/githubSearchFragment"
         android:name="com.example.gitsearch.features.github.GithubSearchFragment"
         android:label="GitHub Search"
-        tools:layout="@layout/github_search_fragment" />
+        tools:layout="@layout/github_search_fragment" >
+        <action
+            android:id="@+id/action_githubSearchFragment_to_repositoryDetailFragment"
+            app:destination="@id/repositoryDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/repositoryDetailFragment"
         android:name="com.example.gitsearch.features.repositorydetail.RepositoryDetailFragment"
         android:label="Repository"
-        tools:layout="@layout/repository_detail_fragment" />
+        tools:layout="@layout/repository_detail_fragment" >
+        <argument
+            android:name="repoid"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 </navigation>
