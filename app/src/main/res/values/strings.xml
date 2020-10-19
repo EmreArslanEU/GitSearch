@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">GitSearch</string>
     <string name="search_hint">search</string>
+    <string name="issuescount"> %s issues</string>
+    <string name="updated_days_ago">last update on %s</string>
+    <string name="watchers"> %s Watchers</string>
+    <string name="go_to_github_button">go to github</string>
 </resources>
