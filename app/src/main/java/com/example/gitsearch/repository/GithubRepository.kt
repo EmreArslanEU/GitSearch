@@ -48,7 +48,6 @@ class GithubRepository @Inject constructor(
         val dbQuery = "%${query.replace(' ', '%')}%"
         val pagingSourceFactory = { database.reposDao().reposByName(dbQuery) }
 
-        GithubRemoteMediator.init = 0
 
         return Pager(
                 config = PagingConfig(prefetchDistance = NETWORK_PAGE_SIZE/2 ,initialLoadSize = NETWORK_PAGE_SIZE*2, pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false),
@@ -61,7 +60,11 @@ class GithubRepository @Inject constructor(
         ).flow
     }
 
+    fun getRepoFromDB(id: Long): Flow<Repo> {
+        return database.reposDao().findRepoByID(id)
+    }
+
     companion object {
-        private const val NETWORK_PAGE_SIZE = 50
+        private const val NETWORK_PAGE_SIZE = 80
     }
 }
