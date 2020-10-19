@@ -22,13 +22,13 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.shareddtos.Repo
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RepoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(repos: List<Repo>)
-
 
     @Query("SELECT * FROM repos WHERE " +
             "name LIKE :queryString OR description LIKE :queryString " +
@@ -38,4 +38,6 @@ interface RepoDao {
     @Query("DELETE FROM repos")
     suspend fun clearRepos()
 
+    @Query("select * from repos where id=:id")
+    fun findRepoByID(id: Long): Flow<Repo>
 }
