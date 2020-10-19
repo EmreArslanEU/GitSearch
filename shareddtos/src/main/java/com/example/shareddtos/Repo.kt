@@ -35,8 +35,15 @@ data class Repo(
     @field:SerializedName("full_name") val fullName: String,
     @field:SerializedName("description") val description: String?,
     @field:SerializedName("html_url") val url: String,
-    @field:SerializedName("stargazers_count") val stars: Int,
-    @field:SerializedName("forks_count") val forks: Int,
+    @field:SerializedName("stargazers_count") val stars: Long?,
+    @field:SerializedName("forks_count") val forks: String?,
     @field:SerializedName("language") val language: String?,
-    @field:SerializedName("updated_at") val lastUpdate: String?
-)
+    @field:SerializedName("updated_at") val lastUpdate: String?,
+    @field:SerializedName("watchers_count") val watchersCount: String?,
+    @field:SerializedName("open_issues") val openIssues: String?
+){
+    fun getReadableDate(): String {
+        lastUpdate?.let { return it.replace('-','.').substringBefore('T')}
+        return ""
+    }
+}
