@@ -46,18 +46,17 @@ class GithubRemoteMediator(
 ) : RemoteMediator<Int, Repo>() {
 
     companion object {
-        var init = 0
     }
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Repo>): MediatorResult {
 
         val page = when (loadType) {
             LoadType.REFRESH -> {
-                init++
-                val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
-                remoteKeys?.nextKey?.minus(1) ?: GITHUB_STARTING_PAGE_INDEX
+                GITHUB_STARTING_PAGE_INDEX
             }
             LoadType.PREPEND -> {
+                return MediatorResult.Success(endOfPaginationReached = true)
+                /*
                 var remoteKeys = getRemoteKeyForFirstItem(state)
                 if (remoteKeys == null) {
                     // The LoadType is PREPEND so some data was loaded before,
@@ -72,7 +71,7 @@ class GithubRemoteMediator(
                         return MediatorResult.Success(endOfPaginationReached = true)
                     }
                     remoteKeys.prevKey
-                }
+                }*/
 
             }
             LoadType.APPEND -> {
@@ -113,6 +112,8 @@ class GithubRemoteMediator(
                 repoDatabase.reposDao().insertAll(repos)
             }
 
+            if(loadType == LoadType.PREPEND && !endOfPaginationReached && page==1)
+                MediatorResult.Success(endOfPaginationReached = true)
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: IOException) {
             return MediatorResult.Error(exception)
