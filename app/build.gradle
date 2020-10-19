@@ -34,6 +34,19 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    buildFeatures{
+        viewBinding true
+        dataBinding true
+    }
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+        mavenCentral()
+    }
 }
 
 dependencies {
@@ -54,12 +67,22 @@ dependencies {
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
 
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+    implementation(Libs.material)
     implementation(Libs.navigation_fragment_ktx)
     implementation(Libs.navigation_ui_ktx)
-    implementation(Libs.paging_runtime)
-    implementation(Libs.room_runtime)
     implementation(Libs.retrofit)
     implementation(Libs.kotlinx_coroutines_core)
+    implementation(Libs.constraintlayout)
+
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
     implementation project(path: ':database')
     implementation project(path: ':networking')
